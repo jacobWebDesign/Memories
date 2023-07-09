@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="grid-wrapper">
+
+
+    </div>
+
+
+</body>
+
+<script>
+    // let arr = Array.from("😮😑😊😏");
+    let arr = ["baklazan.svg", "cherries.png", "orange.png", "strawberry.png"]
+    let container = document.getElementById("grid-wrapper");
+
+    function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+    }
+
+    let shuffArr = shuffleArray(arr);
+
+    function memories() {
+        for (let i = 0; i < shuffArr.length; i++) {
+            let el = shuffArr[i];
+            let cell = document.createElement("div");
+            cell.className = "cell";
+            let div = document.createElement("div");
+            div.className = "fruit";
+            let img = document.createElement("img");
+            // if (i >= arr.length) {
+            //     el = arr[i - 4] + "1";
+            //     div.id = el;
+            //     el = arr[i - 4];
+            //     // div.innerHTML = arr[i - 4];
+            //     img.src = el.substr(el.indexOf("'"), el.lastIndexOf("'"))
+            //     container.appendChild(cell);
+            //     cell.appendChild(div);
+            //     div.appendChild(img);
+            //     img.src = el;
+            //     img.style.opacity = "0";
+            //     img.name = el + 1;
+            // } else {
+
+                div.id = el;
+
+                container.appendChild(cell);
+                cell.appendChild(div);
+                div.appendChild(img);
+                img.src = el;
+                img.style.opacity = "0";
+                img.name = el;
+            // }
+        }
+
+        newArr = shuffleArray(arr);
+
+        for (let i = 0; i < arr.length; i++) {
+            let el = newArr[i];
+            let cell = document.createElement("div");
+            cell.className = "cell";
+            let div = document.createElement("div");
+            div.className = "fruit";
+            let img = document.createElement("img");
+           
+                el = newArr[i] + "1";
+                div.id = el;
+                el = newArr[i];
+                // div.innerHTML = arr[i - 4];
+                
+                container.appendChild(cell);
+                cell.appendChild(div);
+                div.appendChild(img);
+                img.src = el;
+                img.style.opacity = "0";
+                img.name = el + 1;
+        }
+
+    }
+    memories();
+
+
+
+    let c = 0;
+
+
+
+
+    function xd() {
+        var button = document.getElementsByClassName("fruit");
+        for (let i = 0; i < button.length; i++) {
+
+            button[i].addEventListener("click", (event) => {
+
+                if (c == 0) {
+                    x = {
+                        id: button[i].id,
+                        innerHTML: button[i].innerHTML
+                    }
+
+                    console.log("X jest równe:", x);
+                    document.getElementById(x.id).style.backgroundColor = "white";
+                    document.getElementById(x.id).style.color = "black";
+                    let img = document.getElementsByName(x.id);
+                    img[0].style.opacity = "1";
+                    c++;
+                } else {
+
+                    y = {
+                        id: button[i].id,
+                        innerHTML: button[i].innerHTML
+                    }
+
+                    console.log("Y jest równe:", y);
+                    document.getElementById(y.id).style.backgroundColor = "white";
+                    document.getElementById(y.id).style.color = "black";
+                    let img = document.getElementsByName(y.id);
+                    img[0].style.opacity = "1";
+                    c = 0;
+                    setTimeout(function () {
+                        match(x, y);
+                    }, 1000);
+
+                }
+
+
+
+
+
+
+
+            })
+        }
+    }
+    xd()
+
+    function match(x, y) {
+        if ((x.id == y.id + "1") || (x.id + "1" == y.id)) {
+            console.log("Match");
+            document.getElementById(x.id).style.display = "none";
+            document.getElementById(y.id).style.display = "none";
+            return;
+
+        } else {
+            console.log("Not match");
+            document.getElementById(x.id).style.backgroundColor = "blue";
+            document.getElementById(x.id).style.color = "blue";
+            document.getElementById(y.id).style.backgroundColor = "blue";
+            document.getElementById(y.id).style.color = "blue";
+            let img = document.getElementsByName(y.id);
+            img[0].style.opacity = "0";
+            img = document.getElementsByName(x.id);
+            img[0].style.opacity = "0";
+            x = {};
+            y = {};
+            return;
+        }
+
+    }
+
+
+
+
+
+
+
+
+
+</script>
+
+
+</html>

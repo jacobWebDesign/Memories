@@ -1,0 +1,53 @@
+
+
+#grid-wrapper {
+    width: 890px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+
+.cell {
+    padding: 30px;
+    border: dashed 1px black;
+    width: 160px;
+    
+    margin: 0;
+    vertical-align: middle;
+}
+
+.fruit {
+    padding: 30px;
+    font-size: 20px;
+    border: solid 1px;
+    border-radius: 13px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: min-content;
+    height: min-content;
+    background-color: blue;
+    color: blue;
+    
+    
+}
+
+.fruit img {
+    width: 60px;
+    
+}
+
+
+#grid-wrapper {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    
+    
+}
+
+.hidden {
+    background-color: blue;
+    color: blue;
+}
+
+
